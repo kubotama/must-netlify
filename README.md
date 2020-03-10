@@ -1,5 +1,7 @@
 # must-netlify
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/efd70f72-6037-4c9e-9c3a-5d6bf1decc72/deploy-status)](https://must-kubotama.netlify.com/)
+
 ## Project setup
 
 ```markdown
