@@ -16,7 +16,7 @@ describe('ローカル環境のindex.html', () => {
 describe('プレビュー環境のindex.html', () => {
   it('タイトル', done => {
     const title ='MarkUp Support Tool by netlify'
-    const netlifyUrl = 'https://deploy-preview-5--must-kubotama.netlify.com/'
+    const netlifyUrl = 'https://must-kubotama.netlify.com/'
     request(netlifyUrl, (error, response, body) => {
       expect(new JSDOM(body).window.document.getElementsByTagName('title')[0].textContent).toBe(title)
       done()
