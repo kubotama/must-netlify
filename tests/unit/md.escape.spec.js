@@ -1,8 +1,9 @@
-import { JSDOM } from 'jsdom'
-import request from 'request'
+import { shallowMount } from '@vue/test-utils'
+import MustUi from '@/components/MustUi.vue'
 
 describe('Markdownの特殊文字をエスケープする。', () => {
   it('MustUiコンポーネントが存在する。', () => {
-    expect(true).toBe(true)
+    const wrapper = shallowMount(MustUi)
+    expect(wrapper.isVueInstance()).toBeTruthy()
   })
 })
