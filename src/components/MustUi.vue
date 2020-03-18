@@ -1,13 +1,18 @@
 <template>
   <div class="must-ui">
     <div class="must-title">Markup Support Tool</div>
-    <textarea class='must-area' id='mustArea' rows="10" cols="50" placeholder="文字列を入力してください"></textarea>
+    <textarea class='must-area' id='mustArea' placeholder="文字列を入力してください" v-model="mustArea"></textarea>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MustUi'
+  name: 'MustUi',
+  data() {
+    return {
+      mustArea: ''
+    }
+  }
 }
 </script>
 
@@ -30,10 +35,13 @@ a {
 
 .must-area {
   padding: 6pt;
+  width: 60%;
+  min-height: 300pt;
 }
 
 .must-title {
   font-size: 200%;
   padding: 1%;
+  font-weight: bold;
 }
 </style>
