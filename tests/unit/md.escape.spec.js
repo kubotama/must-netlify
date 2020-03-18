@@ -6,4 +6,9 @@ describe('Markdownの特殊文字をエスケープする。', () => {
     const wrapper = shallowMount(MustUi)
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
+
+  it('mustTextテキストエリアが存在する。', () => {
+    const wrapper = shallowMount(MustUi)
+    expect(wrapper.find('#mustArea').exists()).toBeTruthy()
+  })
 })
