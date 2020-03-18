@@ -14,4 +14,8 @@ describe('Markdownの特殊文字をエスケープする。', () => {
   it('mustTextテキストエリアが存在する。', () => {
     expect(wrapper.find('#mustArea').exists()).toBeTruthy()
   })
+
+  it('mustAreaテキストエリアの初期値は\'\'である。', () => {
+    expect(wrapper.vm.mustArea).toBe('')
+  })
 })
