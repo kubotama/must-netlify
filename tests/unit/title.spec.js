@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom'
 // import axios from 'axios'
 import request from 'request'
 
-describe('ローカル環境のindex.html', () => {
+describe.skip('ローカル環境のindex.html', () => {
   it('タイトル',  done => {
     const title ='MarkUp Support Tool by netlify'
     const localUrl = 'http://localhost:8080/'
@@ -13,7 +13,7 @@ describe('ローカル環境のindex.html', () => {
   })
 })
 
-describe('プレビュー環境のindex.html', () => {
+describe.skip('プレビュー環境のindex.html', () => {
   it('タイトル', done => {
     const title ='MarkUp Support Tool by netlify'
     const netlifyUrl = 'https://must-kubotama.netlify.com/'
