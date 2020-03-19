@@ -7,15 +7,19 @@ describe('Markdownの特殊文字をエスケープする。', () => {
     wrapper = shallowMount(MustUi)
   })
 
-  it('MustUiコンポーネントが存在する。', () => {
-    expect(wrapper.isVueInstance()).toBeTruthy()
-  })
+    describe('MustUiコンポーネント', () => {
+    it('存在する。', () => {
+        expect(wrapper.isVueInstance()).toBeTruthy()
+      })
+    })
 
-  it('mustTextテキストエリアが存在する。', () => {
-    expect(wrapper.find('#mustArea').exists()).toBeTruthy()
-  })
+    describe('mustAreaテキストエリア', () => {
+      it('存在する。', () => {
+        expect(wrapper.find('#mustArea').exists()).toBeTruthy()
+      })
 
-  it('mustAreaテキストエリアの初期値は\'\'である。', () => {
-    expect(wrapper.vm.mustArea).toBe('')
-  })
+      it('初期値は\'\'である。', () => {
+        expect(wrapper.vm.mustArea).toBe('')
+      })
+    })
 })
