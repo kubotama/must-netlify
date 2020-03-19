@@ -22,4 +22,10 @@ describe('Markdownの特殊文字をエスケープする。', () => {
         expect(wrapper.vm.mustArea).toBe('')
       })
     })
+
+    describe('mdEscapeButtonボタン', () => {
+      it('存在する。', () => {
+        expect(wrapper.find('#mdEscapeButton').exists()).toBeTruthy()
+      })
+    })
 })
