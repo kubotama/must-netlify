@@ -24,14 +24,15 @@ describe('Markdownの特殊文字をエスケープする。', () => {
     })
 
     describe('mdEscapeButtonボタン', () => {
+      const idMdEscapeButton = '#mdEscapeButton'
       it('存在する。', () => {
-        expect(wrapper.find('#mdEscapeButton').exists()).toBeTruthy()
+        expect(wrapper.find(idMdEscapeButton).exists()).toBeTruthy()
       })
 
       it('クリックするとonMdEscapeが呼び出される。', () => {
         const onMdEscape = jest.fn()
         wrapper.setMethods({ onMdEscape })
-        wrapper.find('#mdEscapeButton').trigger('click')
+        wrapper.find(idMdEscapeButton).trigger('click')
         expect(onMdEscape).toHaveBeenCalledTimes(1)
       })
     })
