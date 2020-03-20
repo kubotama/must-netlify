@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     onMdEscape() {
-      return
+      this.mustArea = '\\\\'
     }
   }
 }
