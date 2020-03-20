@@ -2,6 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import MustUi from '@/components/MustUi.vue'
 
 describe('Markdownの特殊文字をエスケープする。', () => {
+  const idMdEscapeButton = '#mdEscapeButton'
   let wrapper
   beforeEach(() => {
     wrapper = shallowMount(MustUi)
@@ -24,7 +25,6 @@ describe('Markdownの特殊文字をエスケープする。', () => {
   })
 
   describe('mdEscapeButtonボタン', () => {
-    const idMdEscapeButton = '#mdEscapeButton'
     it('存在する。', () => {
       expect(wrapper.find(idMdEscapeButton).exists()).toBeTruthy()
     })
@@ -38,7 +38,6 @@ describe('Markdownの特殊文字をエスケープする。', () => {
   })
 
   describe('特殊文字が一文字', () => {
-    const idMdEscapeButton = '#mdEscapeButton'
     it('\\ -> \\\\', () => {
       wrapper.setData({ mustArea: '\\' })
       wrapper.find(idMdEscapeButton).trigger('click')
