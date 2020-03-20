@@ -16,7 +16,10 @@ export default {
   },
   methods: {
     onMdEscape() {
-      this.mustArea = '\\\\'
+      let text = this.mustArea
+      text = text.replace(/\\/g, '\\\\')
+      text = text.replace(/\*/g, '\\*')
+      this.mustArea = text
     }
   }
 }
