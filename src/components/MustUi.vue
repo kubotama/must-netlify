@@ -19,6 +19,19 @@ export default {
       let text = this.mustArea
       text = text.replace(/\\/g, '\\\\')
       text = text.replace(/\*/g, '\\*')
+      text = text.replace(/_/g, '\\_')
+      text = text.replace(/`/g, '\\`')
+      text = text.replace(/#/g, '\\#')
+      text = text.replace(/\+/g, '\\+')
+      text = text.replace(/-/g, '\\-')
+      text = text.replace(/\./g, '\\.')
+      text = text.replace(/!/g, '\\!')
+      text = text.replace(/\{/g, '\\{')
+      text = text.replace(/\}/g, '\\}')
+      text = text.replace(/\[/g, '\\[')
+      text = text.replace(/\]/g, '\\]')
+      text = text.replace(/\(/g, '\\(')
+      text = text.replace(/\)/g, '\\)')
       this.mustArea = text
     }
   }

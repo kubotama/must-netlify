@@ -38,16 +38,27 @@ describe('Markdownの特殊文字をエスケープする。', () => {
   })
 
   describe('特殊文字が一文字', () => {
-    it('\\ -> \\\\', () => {
-      wrapper.setData({ mustArea: '\\' })
+    it.each`
+    id    | beforeText | afterText
+    ${1}  | ${'*'}     | ${'\\*'}
+    ${2}  | ${'_'}     | ${'\\_'}
+    ${3}  | ${'\\'}    | ${'\\\\'}
+    ${4}  | ${'`'}     | ${'\\`'}
+    ${5}  | ${'#'}     | ${'\\#'}
+    ${6}  | ${'+'}     | ${'\\+'}
+    ${7}  | ${'-'}     | ${'\\-'}
+    ${8}  | ${'.'}     | ${'\\.'}
+    ${9}  | ${'!'}     | ${'\\!'}
+    ${10} | ${'{'}     | ${'\\{'}
+    ${11} | ${'}'}     | ${'\\}'}
+    ${12} | ${'['}     | ${'\\['}
+    ${13} | ${']'}     | ${'\\]'}
+    ${14} | ${'('}     | ${'\\('}
+    ${15} | ${')'}     | ${'\\)'}
+    `('$id: $beforeText -> $afterText', ({ beforeText, afterText }) => {
+      wrapper.setData({ mustArea: beforeText })
       wrapper.find(idMdEscapeButton).trigger('click')
-      expect(wrapper.vm.mustArea).toBe('\\\\')
-    })
-
-    it('* -> \\*', () => {
-      wrapper.setData({ mustArea: '*' })
-      wrapper.find(idMdEscapeButton).trigger('click')
-      expect(wrapper.vm.mustArea).toBe('\\*')
+      expect(wrapper.vm.mustArea).toBe(afterText)
     })
   })
 })
