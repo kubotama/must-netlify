@@ -36,4 +36,13 @@ describe('Markdownの特殊文字をエスケープする。', () => {
       expect(onMdEscape).toHaveBeenCalledTimes(1)
     })
   })
+
+  describe('特殊文字が一文字', () => {
+    const idMdEscapeButton = '#mdEscapeButton'
+    it('\\ -> \\\\', () => {
+      wrapper.setData({ mustArea: '\\' })
+      wrapper.find(idMdEscapeButton).trigger('click')
+      expect(wrapper.vm.mustArea).toBe('\\\\')
+    })
+  })
 })
