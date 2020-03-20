@@ -3,7 +3,7 @@ import MustUi from '@/components/MustUi.vue'
 
 describe('Markdownの特殊文字をエスケープする。', () => {
   let wrapper
-  beforeAll(() => {
+  beforeEach(() => {
     wrapper = shallowMount(MustUi)
   })
 
