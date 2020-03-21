@@ -1,7 +1,10 @@
 <template>
   <div class="must-ui">
     <div class="must-title">Markup Support Tool</div>
-    <div><button id='mdEscapeButton' @click=onMdEscape>Markdownのエスケープ</button></div>
+    <div>
+      <button id='mdEscapeButton' @click=onMdEscape>Markdownのエスケープ</button>
+      <button id='mdLinkButton'>Markdownのリンク</button>
+    </div>
     <textarea class='must-area' id='mustArea' placeholder="文字列を入力してください" v-model="mustArea"></textarea>
   </div>
 </template>
