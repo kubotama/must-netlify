@@ -4,8 +4,8 @@
 
 import axios from "axios";
 
-describe("Netlify functions", () => {
-  it("ステータスコードとデータを確認する。", async () => {
+describe("Netlify Functionsから返されるステータスコードとデータを確認する。", () => {
+  it("http://example.com", async () => {
     let response;
     try {
       response = await axios.get(
@@ -18,5 +18,20 @@ describe("Netlify functions", () => {
     }
     expect(response.status).toBe(200);
     expect(response.data).toBe("Example Domain");
+  });
+
+  it("https://must-kubotama.netlify.app/", async () => {
+    let response;
+    try {
+      response = await axios.get(
+        "http://localhost:9000/.netlify/functions/title?https://must-kubotama.netlify.app"
+      );
+    } catch (e) {
+      console.error(e);
+      expect(false).toBeTruthy();
+      return;
+    }
+    expect(response.status).toBe(200);
+    expect(response.data).toBe("Markup Support Tool");
   });
 });
