@@ -9,7 +9,7 @@ describe("Netlify Functionsから返されるステータスコードとデー�
     let response;
     try {
       response = await axios.get(
-        "http://localhost:9000/.netlify/functions/title?http://example.com"
+        "http://localhost:9000/.netlify/functions/title?url=http://example.com"
       );
     } catch (e) {
       console.error(e);
@@ -24,7 +24,7 @@ describe("Netlify Functionsから返されるステータスコードとデー�
     let response;
     try {
       response = await axios.get(
-        "http://localhost:9000/.netlify/functions/title?https://must-kubotama.netlify.app"
+        "http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"
       );
     } catch (e) {
       console.error(e);
@@ -32,6 +32,6 @@ describe("Netlify Functionsから返されるステータスコードとデー�
       return;
     }
     expect(response.status).toBe(200);
-    expect(response.data).toBe("Markup Support Tool");
+    expect(response.data).toBe("MarkUp Support Tool by netlify");
   });
 });
