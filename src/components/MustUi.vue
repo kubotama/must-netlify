@@ -39,6 +39,14 @@ export default {
     },
     onMdLink() {
       return
+    },
+    getFunctionUrl(pageUrl) {
+      const url = new URL(pageUrl);
+      if (url.hostname === "localhost") {
+        url.port = 9000;
+      }
+      url.pathname = ".netlify/functions/sample";
+      return url.href;
     }
   }
 }

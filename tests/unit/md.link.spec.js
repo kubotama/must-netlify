@@ -18,3 +18,19 @@ describe('mdLinkButtonボタン', () => {
     expect(onMdLink).toHaveBeenCalledTimes(1)
   })
 })
+
+describe("コードのURLを取得する。", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(MustUi);
+  });
+
+  it.each`
+    beforeUrl                                           | afterUrl
+    ${"http://localhost:8080"}                          | ${"http://localhost:9000/.netlify/functions/sample"}
+    ${"https://kubotama-sample-functions.netlify.com/"} | ${"https://kubotama-sample-functions.netlify.com/.netlify/functions/sample"}
+  `("$beforeUrl -> $afterUrl", ({ beforeUrl, afterUrl }) => {
+    expect(wrapper.vm.getFunctionUrl(beforeUrl)).toBe(afterUrl);
+  });
+});
