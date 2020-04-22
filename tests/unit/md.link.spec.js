@@ -55,4 +55,12 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
     expect(axios.get.mock.calls.length).toBe(0)
     expect(wrapper.vm.mustArea).toBe("")
   })
+
+  it("http://example.com", () => {
+    wrapper.setData({ mustArea: "http://example.com" })
+    wrapper.find("#mdLinkButton").trigger("click")
+    expect(axios.get.mock.calls.length).toBe(1)
+    expect(axios.get.mock.calls[0][0]).toBe("http://localhost:9000?url=http://example.com")
+    expect(wrapper.vm.mustArea).toBe("[Example Domain](http://example.com)")
+  })
 })
