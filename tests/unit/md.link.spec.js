@@ -48,19 +48,19 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   beforeEach(() => {
     wrapper = shallowMount(MustUi);
   });
-  it("テキスト領域が空白", () => {
-    wrapper.setData({ mustArea: "" })
-    wrapper.find("#mdLinkButton").trigger('click')
-    expect(axios.get.mock.calls.length).toBe(0)
-    expect(wrapper.vm.mustArea).toBe("")
-  })
 
-  it("http://example.com", async () => {
-    wrapper.setData({ mustArea: "http://example.com" })
+  it.each`
+  url | calledTimes | calledArg | outputText
+  ${""} | ${0} | ${""} | ${""}
+  ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"}
+  `("$url", async ({ url, calledTimes, calledArg, outputText }) => {
+    wrapper.setData({ mustArea: url })
     wrapper.find("#mdLinkButton").trigger("click")
     await flushPromises()
-    expect(axios.get.mock.calls.length).toBe(1)
-    expect(axios.get.mock.calls[0][0]).toBe("http://localhost:9000/.netlify/functions/title?url=http://example.com")
-    expect(wrapper.vm.mustArea).toBe("[Example Domain](http://example.com)")
+    expect(axios.get).toBeCalledTimes(calledTimes)
+    if (calledTimes > 0) {
+      expect(axios.get).toBeCalledWith(calledArg)
+      expect(wrapper.vm.mustArea).toBe(outputText)
+    }
   })
 })
