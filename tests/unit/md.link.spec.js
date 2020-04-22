@@ -1,12 +1,11 @@
 import axios from 'axios'
+import flushPromises from 'flush-promises'
 import { shallowMount } from '@vue/test-utils'
 import MustUi from '@/components/MustUi.vue'
 
 jest.mock("axios");
 axios.get = jest.fn(() =>
-  Promise.resolve(() => {
-    return {}
-  })
+  Promise.resolve({ status: 200, data: "Example Domain"})
 );
 
 describe('mdLinkButtonボタン', () => {
@@ -36,8 +35,8 @@ describe("コードのURLを取得する。", () => {
 
   it.each`
     beforeUrl                                           | afterUrl
-    ${"http://localhost:8080"}                          | ${"http://localhost:9000/.netlify/functions/sample"}
-    ${"https://kubotama-sample-functions.netlify.com/"} | ${"https://kubotama-sample-functions.netlify.com/.netlify/functions/sample"}
+    ${"http://localhost:8080"}                          | ${"http://localhost:9000/.netlify/functions/title"}
+    ${"https://kubotama-sample-functions.netlify.com/"} | ${"https://kubotama-sample-functions.netlify.com/.netlify/functions/title"}
   `("$beforeUrl -> $afterUrl", ({ beforeUrl, afterUrl }) => {
     expect(wrapper.vm.getFunctionUrl(beforeUrl)).toBe(afterUrl);
   });
@@ -56,11 +55,13 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
     expect(wrapper.vm.mustArea).toBe("")
   })
 
-  it("http://example.com", () => {
+  it("http://example.com", async () => {
     wrapper.setData({ mustArea: "http://example.com" })
     wrapper.find("#mdLinkButton").trigger("click")
+    await flushPromises()
+    // wrapper.vm.onMdLink()
     expect(axios.get.mock.calls.length).toBe(1)
-    expect(axios.get.mock.calls[0][0]).toBe("http://localhost:9000?url=http://example.com")
+    expect(axios.get.mock.calls[0][0]).toBe("http://localhost:9000/.netlify/functions/title?url=http://example.com")
     expect(wrapper.vm.mustArea).toBe("[Example Domain](http://example.com)")
   })
 })

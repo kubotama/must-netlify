@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
   name: 'MustUi',
   data() {
@@ -37,15 +39,27 @@ export default {
       text = text.replace(/\)/g, '\\)')
       this.mustArea = text
     },
-    onMdLink() {
-      return
+    async onMdLink() {
+      if (this.mustArea.length == 0) {
+        return
+      }
+      const url = this.getFunctionUrl(window.location.href) + "?url=" + this.mustArea
+      // axios.get(url).then(res => {
+      //   if (res.status == 200) {
+      //     this.mustArea = "[Example Domain](http://example.com)"
+      //   }
+      // })
+      const res = await axios.get(url)
+      if (res.status == 200) {
+        this.mustArea = "[Example Domain](http://example.com)"
+      }
     },
     getFunctionUrl(pageUrl) {
       const url = new URL(pageUrl);
       if (url.hostname === "localhost") {
         url.port = 9000;
       }
-      url.pathname = ".netlify/functions/sample";
+      url.pathname = ".netlify/functions/title";
       return url.href;
     }
   }
