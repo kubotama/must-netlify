@@ -10,6 +10,7 @@ describe("Netlify Functionsから返されるステータスコードとデー�
   ${"http://example.com"} | ${"Example Domain"}
   ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"}
   ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"}
+  ${""} | ${""}
   `("$url", async ({url, title}) => {
     let response;
     try {
