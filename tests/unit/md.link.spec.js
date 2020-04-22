@@ -62,7 +62,7 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
     expect(axios.get).toBeCalledTimes(calledTimes)
     if (calledTimes > 0) {
       expect(axios.get).toBeCalledWith(calledArg)
-      expect(wrapper.vm.mustArea).toBe(outputText)
     }
+    expect(wrapper.vm.mustArea).toBe(outputText)
   })
 })
