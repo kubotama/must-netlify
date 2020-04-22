@@ -1,5 +1,13 @@
+import axios from 'axios'
 import { shallowMount } from '@vue/test-utils'
 import MustUi from '@/components/MustUi.vue'
+
+jest.mock("axios");
+axios.get = jest.fn(() =>
+  Promise.resolve(() => {
+    return {}
+  })
+);
 
 describe('mdLinkButtonボタン', () => {
   const idMdLinkButton = '#mdLinkButton'
@@ -34,3 +42,17 @@ describe("コードのURLを取得する。", () => {
     expect(wrapper.vm.getFunctionUrl(beforeUrl)).toBe(afterUrl);
   });
 });
+
+describe("ボタンをクリックすると呼び出されるメソッドのテスト", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(MustUi);
+  });
+  it("テキスト領域が空白", () => {
+    wrapper.setData({ mustArea: "" })
+    wrapper.find("#mdLinkButton").trigger('click')
+    expect(axios.get.mock.calls.length).toBe(0)
+    expect(wrapper.vm.mustArea).toBe("")
+  })
+})
