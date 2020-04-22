@@ -56,6 +56,8 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   `("$url", async ({ url, calledTimes, calledArg, outputText }) => {
     wrapper.setData({ mustArea: url })
     wrapper.find("#mdLinkButton").trigger("click")
+    // mdLinkButton(Markdownのリンク)ボタンをクリックして呼び出されるメソッド(onMdLink)は、非同期処理(axios)を呼び出す。
+    // expectの前に非同期処理を終了している必要があるため、ここでflushPromisesを呼び出す。
     await flushPromises()
     expect(axios.get).toBeCalledTimes(calledTimes)
     if (calledTimes > 0) {
