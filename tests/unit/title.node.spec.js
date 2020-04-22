@@ -5,11 +5,15 @@
 import axios from "axios";
 
 describe("Netlify Functionsから返されるステータスコードとデータを確認する。", () => {
-  it("http://example.com", async () => {
+  it.each`
+  url | title
+  ${"http://example.com"} | ${"Example Domain"}
+  ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"}
+  `("$url", async ({url, title}) => {
     let response;
     try {
       response = await axios.get(
-        "http://localhost:9000/.netlify/functions/title?url=http://example.com"
+        "http://localhost:9000/.netlify/functions/title?url=" + url
       );
     } catch (e) {
       console.error(e);
@@ -17,21 +21,6 @@ describe("Netlify Functionsから返されるステータスコードとデー�
       return;
     }
     expect(response.status).toBe(200);
-    expect(response.data).toBe("Example Domain");
+    expect(response.data).toBe(title);
   });
-
-  it("https://must-kubotama.netlify.app/", async () => {
-    let response;
-    try {
-      response = await axios.get(
-        "http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"
-      );
-    } catch (e) {
-      console.error(e);
-      expect(false).toBeTruthy();
-      return;
-    }
-    expect(response.status).toBe(200);
-    expect(response.data).toBe("MarkUp Support Tool by netlify");
-  });
-});
+})
