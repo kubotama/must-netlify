@@ -53,6 +53,7 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   url | calledTimes | calledArg | outputText
   ${""} | ${0} | ${""} | ${""}
   ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"}
+  ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[Markup Support Tool](https://must-kubotama.netlify.app"}
   `("$url", async ({ url, calledTimes, calledArg, outputText }) => {
     wrapper.setData({ mustArea: url })
     wrapper.find("#mdLinkButton").trigger("click")
