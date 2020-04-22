@@ -11,6 +11,7 @@ describe("Netlify Functionsから返されるステータスコードとデー�
   ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"} | ${200}
   ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"} | ${200}
   ${""} | ${""} | ${204}
+  ${"http://localhost"} | ${""} | ${204}
   `("$url", async ({url, title, statusCode}) => {
     let response;
     try {
