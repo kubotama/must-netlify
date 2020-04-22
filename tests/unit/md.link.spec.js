@@ -60,6 +60,8 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
     // expectの前に非同期処理を終了している必要があるため、ここでflushPromisesを呼び出す。
     await flushPromises()
     expect(axios.get).toBeCalledTimes(calledTimes)
+
+    // calledTimesが0は、モックが呼び出されないため、引数をテストしない。
     if (calledTimes > 0) {
       expect(axios.get).toBeCalledWith(calledArg)
     }
