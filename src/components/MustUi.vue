@@ -49,10 +49,8 @@ export default {
       //     this.mustArea = "[Example Domain](http://example.com)"
       //   }
       // })
-      const res = await axios.get(url)
-      if (res.status == 200) {
-        this.mustArea = "[Example Domain](http://example.com)"
-      }
+      await axios.get(url)
+      this.mustArea = "[Example Domain](http://example.com)"
     },
     getFunctionUrl(pageUrl) {
       const url = new URL(pageUrl);
