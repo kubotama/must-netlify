@@ -59,7 +59,6 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
     wrapper.setData({ mustArea: "http://example.com" })
     wrapper.find("#mdLinkButton").trigger("click")
     await flushPromises()
-    // wrapper.vm.onMdLink()
     expect(axios.get.mock.calls.length).toBe(1)
     expect(axios.get.mock.calls[0][0]).toBe("http://localhost:9000/.netlify/functions/title?url=http://example.com")
     expect(wrapper.vm.mustArea).toBe("[Example Domain](http://example.com)")
