@@ -6,12 +6,12 @@ import axios from "axios";
 
 describe("Netlify Functionsから返されるステータスコードとデータを確認する。", () => {
   it.each`
-  url | title
-  ${"http://example.com"} | ${"Example Domain"}
-  ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"}
-  ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"}
-  ${""} | ${""}
-  `("$url", async ({url, title}) => {
+  url | title | statusCode
+  ${"http://example.com"} | ${"Example Domain"} | ${200}
+  ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"} | ${200}
+  ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"} | ${200}
+  ${""} | ${""} | ${204}
+  `("$url", async ({url, title, statusCode}) => {
     let response;
     try {
       response = await axios.get(
@@ -22,7 +22,7 @@ describe("Netlify Functionsから返されるステータスコードとデー�
       expect(false).toBeTruthy();
       return;
     }
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(statusCode);
     expect(response.data).toBe(title);
   });
 })

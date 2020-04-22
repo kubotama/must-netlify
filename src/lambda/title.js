@@ -6,6 +6,12 @@ export async function handler(event) {
   const url = event.queryStringParameters.url;
   console.log("url: " + url)
   try {
+    if (url.length == 0) {
+      return {
+        statusCode: 204,
+        body: ""
+      }
+    }
     const response = await axios.get(url)
     const body = response.data
     const $ = cheerio.load(body)
