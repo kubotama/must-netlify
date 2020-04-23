@@ -45,7 +45,9 @@ export default {
       }
       const url = this.getFunctionUrl(window.location.href) + "?url=" + this.mustArea
       const res = await axios.get(url)
-      this.mustArea = "[" + res.data + "](" + this.mustArea + ")"
+      if (res.status == 200) {
+        this.mustArea = '[' + res.data + "](" + this.mustArea + ")"
+      }
     },
     getFunctionUrl(pageUrl) {
       const url = new URL(pageUrl);
