@@ -3,21 +3,13 @@ import flushPromises from 'flush-promises'
 import { shallowMount } from '@vue/test-utils'
 import MustUi from '@/components/MustUi.vue'
 
-let statusCode
-let title
+let statusCode, title
 
 jest.mock("axios");
-axios.get.mockImplementation((url) =>
-  // Promise.resolve(() => {
-    // const returnData = {
-    //   "http://example.com": {"status": 200, "data": "Example Domain"},
-    //   "https://must-kubotama.netlify.app": {"status": 200, "data": "MarkUp Support Tool by netlify"}
-    // }
-    // console.log(url)
-    // return{ status: returnData.url.status, data: returnData.url.data}
-      Promise.resolve({
-        status: statusCode, data: title
-    })
+axios.get.mockImplementation(() =>
+  Promise.resolve({
+    status: statusCode, data: title
+  })
 )
 
 describe('mdLinkButtonボタン', () => {
