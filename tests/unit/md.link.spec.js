@@ -3,6 +3,7 @@ import flushPromises from 'flush-promises'
 import { shallowMount } from '@vue/test-utils'
 import MustUi from '@/components/MustUi.vue'
 
+// モックから返す値をテスト関数の中でセットするためのグローバル変数
 let statusCode, title
 
 jest.mock("axios");
@@ -59,6 +60,7 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"} | ${200} | ${"Example Domain"}
   ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[MarkUp Support Tool by netlify](https://must-kubotama.netlify.app)"} | ${200} | ${"MarkUp Support Tool by netlify"}
   `("$url", async ({ url, calledTimes, calledArg, outputText, testStatusCode, testTitle }) => {
+    // モックから返す値をグローバル変数にセットする。
     statusCode = testStatusCode
     title = testTitle
     wrapper.setData({ mustArea: url })
