@@ -3,10 +3,22 @@ import flushPromises from 'flush-promises'
 import { shallowMount } from '@vue/test-utils'
 import MustUi from '@/components/MustUi.vue'
 
+let statusCode
+let title
+
 jest.mock("axios");
-axios.get = jest.fn(() =>
-  Promise.resolve({ status: 200, data: "Example Domain"})
-);
+axios.get.mockImplementation((url) =>
+  // Promise.resolve(() => {
+    // const returnData = {
+    //   "http://example.com": {"status": 200, "data": "Example Domain"},
+    //   "https://must-kubotama.netlify.app": {"status": 200, "data": "MarkUp Support Tool by netlify"}
+    // }
+    // console.log(url)
+    // return{ status: returnData.url.status, data: returnData.url.data}
+      Promise.resolve({
+        status: statusCode, data: title
+    })
+)
 
 describe('mdLinkButtonボタン', () => {
   const idMdLinkButton = '#mdLinkButton'
@@ -50,11 +62,13 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   });
 
   it.each`
-  url | calledTimes | calledArg | outputText
-  ${""} | ${0} | ${""} | ${""}
-  ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"}
-  ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[Markup Support Tool](https://must-kubotama.netlify.app"}
-  `("$url", async ({ url, calledTimes, calledArg, outputText }) => {
+  url | calledTimes | calledArg | outputText | testStatusCode | testTitle
+  ${""} | ${0} | ${""} | ${""} | ${204} | ${""}
+  ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"} | ${200} | ${"Example Domain"}
+  ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[MarkUp Support Tool by netlify](https://must-kubotama.netlify.app)"} | ${200} | ${"MarkUp Support Tool by netlify"}
+  `("$url", async ({ url, calledTimes, calledArg, outputText, testStatusCode, testTitle }) => {
+    statusCode = testStatusCode
+    title = testTitle
     wrapper.setData({ mustArea: url })
     wrapper.find("#mdLinkButton").trigger("click")
     // mdLinkButton(Markdownのリンク)ボタンをクリックして呼び出されるメソッド(onMdLink)は、非同期処理(axios)を呼び出す。
