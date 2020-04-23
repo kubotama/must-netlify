@@ -18,7 +18,10 @@ export async function handler(event) {
     const title = $('title').text()
     console.log("title: " + title)
     return {
-      statusCode: 200,
+      "headers": {
+        "Access-Control-Allow-Origin": event.headers.origin
+      },
+      "statusCode": 200,
       body: title
     }
   } catch (error) {
