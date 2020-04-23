@@ -59,6 +59,7 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   ${""} | ${0} | ${""} | ${""} | ${204} | ${""}
   ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"} | ${200} | ${"Example Domain"}
   ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[MarkUp Support Tool by netlify](https://must-kubotama.netlify.app)"} | ${200} | ${"MarkUp Support Tool by netlify"}
+  ${"http://localhost"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://localhost"} | ${"http://localhost"} | ${204} | ${""}
   `("$url", async ({ url, calledTimes, calledArg, outputText, testStatusCode, testTitle }) => {
     // モックから返す値をグローバル変数にセットする。
     statusCode = testStatusCode
