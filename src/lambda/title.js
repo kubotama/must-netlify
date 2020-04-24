@@ -25,7 +25,7 @@ export async function handler(event) {
         if (event.headers.origin) {
           returnData.headers["Access-Control-Allow-Origin"] = event.headers.origin
         }
-        else {
+        else if (event.headers.referer) {
           returnData.headers["Access-Control-Allow-Origin"] = event.headers.referer
         }
       }
