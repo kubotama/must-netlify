@@ -18,6 +18,7 @@ export async function handler(event) {
       console.log("title: " + title)
       returnData.statusCode = 200
       returnData.body = title
+      returnData.isBase64Encoded = false
 
       // テスト環境では、ボタンが表示されているページとNetlify Functionsのポート番号が違うためCORS制約に違反する。
       // CORS制約を回避するためにAccess-Control-Allow-Origin属性を設定する。
