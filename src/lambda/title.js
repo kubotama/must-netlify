@@ -25,7 +25,7 @@ export async function handler(event) {
       }
     }
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     returnData.statusCode = 204;
   }
   return returnData;
