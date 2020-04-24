@@ -19,7 +19,6 @@ export async function handler(event) {
       console.log("title: " + title)
       returnData.statusCode = 200
       returnData.body = title
-      console.log(event.headers)
       if (event.headers.host === "localhost:9000" && event.headers["user-agent"] != "axios/0.19.2") {
         if (event.headers.origin) {
           returnData.headers["Access-Control-Allow-Origin"] = event.headers.origin
