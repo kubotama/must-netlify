@@ -1,4 +1,3 @@
-// import { JSDOM } from 'jsdom'
 import cheerio from "cheerio"
 import axios from "axios"
 
@@ -29,7 +28,6 @@ export async function handler(event) {
       }
     }
   } catch (error) {
-    // console.log(error)
     returnData.statusCode = 204;
   }
   return returnData;
