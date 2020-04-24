@@ -5,6 +5,7 @@ import axios from "axios"
 export async function handler(event) {
   const returnData = { headers: [] };
   const url = event.queryStringParameters.url;
+  console.log(event.headers)
   console.log("url: " + url)
   try {
     if (url.length == 0) {
