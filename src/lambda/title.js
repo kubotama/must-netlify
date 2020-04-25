@@ -7,6 +7,7 @@ export async function handler(event) {
   console.log(event.headers)
   console.log("url: " + url)
   try {
+    //  URLが指定されていない場合にはstatusCodeを204を返す。
     if (url.length == 0) {
       returnData.statusCode = 204
     }
@@ -16,6 +17,7 @@ export async function handler(event) {
       const $ = cheerio.load(body)
       const title = $('title').text()
       console.log("title: " + title)
+      // タイトルが取得できた場合にはstatusCodeを200を返す。
       returnData.statusCode = 200
       returnData.body = title
       returnData.isBase64Encoded = false
@@ -32,6 +34,7 @@ export async function handler(event) {
       }
     }
   } catch (error) {
+    // 指定されたURLにアクセスできない場合にはstatusCodeを204を返す。
     returnData.statusCode = 204;
   }
   console.log(returnData)
