@@ -3,7 +3,7 @@ import axios from "axios"
 
 // export async function handler(event, context, callback) {
 export async function handler(event) {
-  const returnData = { statusCode: 0, headers: { "Content-Type": "text/plain" } };
+  const returnData = { statusCode: 0, headers: {} };
   const url = event.queryStringParameters.url;
   console.log(event.headers)
   console.log("url: " + url)
