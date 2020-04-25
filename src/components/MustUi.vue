@@ -1,12 +1,17 @@
 <template>
   <div class="must-ui">
     <div class="must-title">Markup Support Tool</div>
-    <div><button id='mdEscapeButton' @click=onMdEscape>Markdownのエスケープ</button></div>
+    <div>
+      <button id='mdEscapeButton' @click=onMdEscape>Markdownのエスケープ</button>
+      <button id='mdLinkButton' @click=onMdLink>Markdownのリンク</button>
+    </div>
     <textarea class='must-area' id='mustArea' placeholder="文字列を入力してください" v-model="mustArea"></textarea>
   </div>
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
   name: 'MustUi',
   data() {
@@ -33,6 +38,24 @@ export default {
       text = text.replace(/\(/g, '\\(')
       text = text.replace(/\)/g, '\\)')
       this.mustArea = text
+    },
+    async onMdLink() {
+      if (this.mustArea.length == 0) {
+        return
+      }
+      const url = this.getFunctionUrl(window.location.href) + "?url=" + this.mustArea
+      const res = await axios.get(url)
+      if (res.status == 200) {
+        this.mustArea = '[' + res.data + "](" + this.mustArea + ")"
+      }
+    },
+    getFunctionUrl(pageUrl) {
+      const url = new URL(pageUrl);
+      if (url.hostname === "localhost") {
+        url.port = 9000;
+      }
+      url.pathname = ".netlify/functions/title";
+      return url.href;
     }
   }
 }
