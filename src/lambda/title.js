@@ -1,7 +1,6 @@
 import cheerio from "cheerio"
 import axios from "axios"
 
-// export async function handler(event, context, callback) {
 export async function handler(event) {
   const returnData = { statusCode: 0, headers: { "Content-Type": "text/plain" } };
   const url = event.queryStringParameters.url;
@@ -37,5 +36,4 @@ export async function handler(event) {
   }
   console.log(returnData)
   return returnData;
-  // callback(null, returnData)
 }
