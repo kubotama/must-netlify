@@ -4,6 +4,6 @@
 
 入力されたURLをMarkdownのリンク形式、すなわち\[見出し\](URL)に変換する。たとえば<https://www.google.co.jp/>が入力されたら、\[Google\](<https://www.google.co.jp>)に変換する。表示する見出しは、入力されたURLのwebページのtitleタグから取得する。
 
-[MarkUp Support Tool by netlify](https://must-kubotama.netlify.app/)で公開している。
+構築方法は、[入力したURLからMarkdownのリンク形式に変換 | 思いつきを書くブログ](https://omoitsuki.netlify.app/2020/04/25/md-link/)にある。
 
-構築方法は、[入力したURLからMarkdownのリンク形式に変換 | 思いつきを書くブログ](https://omoitsuki.netlify.app/2020/04/25/md-link/)にまとめてある。
+更新情報は[タグ: must | 思いつきを書くブログ](https://omoitsuki.netlify.app/tags/must/)にある。
