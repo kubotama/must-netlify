@@ -40,7 +40,7 @@ describe("コードのURLを取得する。", () => {
 
   it.each`
     beforeUrl                                           | afterUrl
-    ${"http://localhost:8080"}                          | ${"http://localhost:9000/.netlify/functions/title"}
+    ${"http://localhost:8888"}                          | ${"http://localhost:9999/.netlify/functions/title"}
     ${"https://kubotama-sample-functions.netlify.com/"} | ${"https://kubotama-sample-functions.netlify.com/.netlify/functions/title"}
   `("$beforeUrl -> $afterUrl", ({ beforeUrl, afterUrl }) => {
     expect(wrapper.vm.getFunctionUrl(beforeUrl)).toBe(afterUrl);
@@ -57,9 +57,9 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
   it.each`
   url | calledTimes | calledArg | outputText | testStatusCode | testTitle
   ${""} | ${0} | ${""} | ${""} | ${204} | ${""}
-  ${"http://example.com"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"} | ${200} | ${"Example Domain"}
-  ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[MarkUp Support Tool by netlify](https://must-kubotama.netlify.app)"} | ${200} | ${"MarkUp Support Tool by netlify"}
-  ${"http://localhost"} | ${1} | ${"http://localhost:9000/.netlify/functions/title?url=http://localhost"} | ${"http://localhost"} | ${204} | ${""}
+  ${"http://example.com"} | ${1} | ${"http://localhost:9999/.netlify/functions/title?url=http://example.com"} | ${"[Example Domain](http://example.com)"} | ${200} | ${"Example Domain"}
+  ${"https://must-kubotama.netlify.app"} | ${1} | ${"http://localhost:9999/.netlify/functions/title?url=https://must-kubotama.netlify.app"} | ${"[MarkUp Support Tool by netlify](https://must-kubotama.netlify.app)"} | ${200} | ${"MarkUp Support Tool by netlify"}
+  ${"http://localhost"} | ${1} | ${"http://localhost:9999/.netlify/functions/title?url=http://localhost"} | ${"http://localhost"} | ${204} | ${""}
   `("$url", async ({ url, calledTimes, calledArg, outputText, testStatusCode, testTitle }) => {
     // モックから返す値をグローバル変数にセットする。
     statusCode = testStatusCode
