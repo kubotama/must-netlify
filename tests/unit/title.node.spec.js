@@ -9,6 +9,7 @@ describe("Netlify Functionsから返されるステータスコードとデー�
   url | title | statusCode
   ${"http://example.com"} | ${"Example Domain"} | ${200}
   ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"} | ${200}
+  ${"https://www.google.co.jp/maps/"} | ${"Google マップ"} | ${200}
   ${""} | ${""} | ${204}
   ${"http://localhost"} | ${""} | ${204}
   `("$url", async ({url, title, statusCode}) => {

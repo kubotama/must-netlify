@@ -19,7 +19,7 @@ export async function handler(event) {
       console.log("title: " + title)
       // タイトルが取得できた場合にはstatusCodeを200を返す。
       returnData.statusCode = 200
-      returnData.body = title
+      returnData.body = title.trim()
       returnData.isBase64Encoded = false
 
       // テスト環境では、ボタンが表示されているページとNetlify Functionsのポート番号が違うためCORS制約に違反する。
