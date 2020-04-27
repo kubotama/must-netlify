@@ -21,23 +21,7 @@ export default {
   },
   methods: {
     onMdEscape() {
-      let text = this.mustArea
-      text = text.replace(/\\/g, '\\\\')
-      text = text.replace(/\*/g, '\\*')
-      text = text.replace(/_/g, '\\_')
-      text = text.replace(/`/g, '\\`')
-      text = text.replace(/#/g, '\\#')
-      text = text.replace(/\+/g, '\\+')
-      text = text.replace(/-/g, '\\-')
-      text = text.replace(/\./g, '\\.')
-      text = text.replace(/!/g, '\\!')
-      text = text.replace(/\{/g, '\\{')
-      text = text.replace(/\}/g, '\\}')
-      text = text.replace(/\[/g, '\\[')
-      text = text.replace(/\]/g, '\\]')
-      text = text.replace(/\(/g, '\\(')
-      text = text.replace(/\)/g, '\\)')
-      this.mustArea = text
+      this.mustArea = this.mdEscape(this.mustArea)
     },
     async onMdLink() {
       if (this.mustArea.length == 0) {
@@ -46,7 +30,7 @@ export default {
       const url = this.getFunctionUrl(window.location.href) + "?url=" + this.mustArea
       const res = await axios.get(url)
       if (res.status == 200) {
-        this.mustArea = '[' + res.data + "](" + this.mustArea + ")"
+        this.mustArea = '[' + this.mdEscape(res.data) + "](" + this.mustArea + ")"
       }
     },
     getFunctionUrl(pageUrl) {
@@ -56,6 +40,16 @@ export default {
       }
       url.pathname = ".netlify/functions/title";
       return url.href;
+    },
+    mdEscape(text) {
+      text = text.replace(/\\/g, '\\\\')
+      text = text.replace(/\*/g, '\\*')
+      text = text.replace(/_/g, '\\_')
+      text = text.replace(/`/g, '\\`')
+      text = text.replace(/#/g, '\\#')
+      text = text.replace(/\+/g, '\\+')
+      text = text.replace(/-/g, '\\-')
+      return text
     }
   }
 }
