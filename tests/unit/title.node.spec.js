@@ -8,7 +8,6 @@ describe("Netlify Functionsから返されるステータスコードとデー�
   it.each`
   url | title | statusCode
   ${"http://example.com"} | ${"Example Domain"} | ${200}
-  ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"} | ${200}
   ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"} | ${200}
   ${""} | ${""} | ${204}
   ${"http://localhost"} | ${""} | ${204}
