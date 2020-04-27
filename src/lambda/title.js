@@ -24,7 +24,7 @@ export async function handler(event) {
 
       // テスト環境では、ボタンが表示されているページとNetlify Functionsのポート番号が違うためCORS制約に違反する。
       // CORS制約を回避するためにAccess-Control-Allow-Origin属性を設定する。
-      if (event.headers.host === "localhost:9000" && !event.headers["user-agent"].match(/axios/)) {
+      if (event.headers.host === "localhost:9999" && !event.headers["user-agent"].match(/axios/)) {
         if (event.headers.origin) {
           returnData.headers["Access-Control-Allow-Origin"] = event.headers.origin
         }

@@ -52,7 +52,7 @@ export default {
     getFunctionUrl(pageUrl) {
       const url = new URL(pageUrl);
       if (url.hostname === "localhost") {
-        url.port = 9000;
+        url.port = 9999;
       }
       url.pathname = ".netlify/functions/title";
       return url.href;
