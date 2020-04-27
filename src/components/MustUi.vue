@@ -21,15 +21,7 @@ export default {
   },
   methods: {
     onMdEscape() {
-      let text = this.mustArea
-      text = text.replace(/\\/g, '\\\\')
-      text = text.replace(/\*/g, '\\*')
-      text = text.replace(/_/g, '\\_')
-      text = text.replace(/`/g, '\\`')
-      text = text.replace(/#/g, '\\#')
-      text = text.replace(/\+/g, '\\+')
-      text = text.replace(/-/g, '\\-')
-      this.mustArea = text
+      this.mustArea = this.mdEscape(this.mustArea)
     },
     async onMdLink() {
       if (this.mustArea.length == 0) {
@@ -48,6 +40,16 @@ export default {
       }
       url.pathname = ".netlify/functions/title";
       return url.href;
+    },
+    mdEscape(text) {
+      text = text.replace(/\\/g, '\\\\')
+      text = text.replace(/\*/g, '\\*')
+      text = text.replace(/_/g, '\\_')
+      text = text.replace(/`/g, '\\`')
+      text = text.replace(/#/g, '\\#')
+      text = text.replace(/\+/g, '\\+')
+      text = text.replace(/-/g, '\\-')
+      return text
     }
   }
 }
