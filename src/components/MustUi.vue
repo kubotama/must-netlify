@@ -30,7 +30,7 @@ export default {
       const url = this.getFunctionUrl(window.location.href) + "?url=" + this.mustArea
       const res = await axios.get(url)
       if (res.status == 200) {
-        this.mustArea = '[' + res.data + "](" + this.mustArea + ")"
+        this.mustArea = '[' + this.mdEscape(res.data) + "](" + this.mustArea + ")"
       }
     },
     getFunctionUrl(pageUrl) {
