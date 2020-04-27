@@ -29,14 +29,14 @@ export default {
       text = text.replace(/#/g, '\\#')
       text = text.replace(/\+/g, '\\+')
       text = text.replace(/-/g, '\\-')
-      text = text.replace(/\./g, '\\.')
-      text = text.replace(/!/g, '\\!')
-      text = text.replace(/\{/g, '\\{')
-      text = text.replace(/\}/g, '\\}')
-      text = text.replace(/\[/g, '\\[')
-      text = text.replace(/\]/g, '\\]')
-      text = text.replace(/\(/g, '\\(')
-      text = text.replace(/\)/g, '\\)')
+      // text = text.replace(/\./g, '\\.')
+      // text = text.replace(/!/g, '\\!')
+      // text = text.replace(/\{/g, '\\{')
+      // text = text.replace(/\}/g, '\\}')
+      // text = text.replace(/\[/g, '\\[')
+      // text = text.replace(/\]/g, '\\]')
+      // text = text.replace(/\(/g, '\\(')
+      // text = text.replace(/\)/g, '\\)')
       this.mustArea = text
     },
     async onMdLink() {
