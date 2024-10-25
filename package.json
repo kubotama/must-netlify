@@ -15,7 +15,7 @@
     "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.6.4",
     "netlify-lambda": "^1.6.3",
-    "vue": "^2.6.11"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
